@@ -1,0 +1,12 @@
+.env
+.nux
+.pytest_cache
+.telemetry
+*__pycache__*
+history/
+logs/
+minimal_lakehouse.egg-info/
+minio/
+schedules/
+storage/
+venv/
