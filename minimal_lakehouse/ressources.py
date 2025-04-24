@@ -3,10 +3,10 @@ import requests
 from minio import Minio
 
 class OpenF1Api(dg.ConfigurableResource):
-    endpoint:str 
+    base_url:str = 'https://api.openf1.org/v1'
 
-    def request(self, **kwargs):
-        url = f'https://api.openf1.org/v1/{self.endpoint}'
+    def request(self, endpoint, **kwargs):
+        url = f'{self.base_url}/{endpoint}'
         res = requests.get(url, kwargs) 
         return res
 
