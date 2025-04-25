@@ -84,16 +84,20 @@ def bronze_sessions(context: dg.AssetExecutionContext, duckdb: DuckDBResource) -
 
         cnn.execute("""
                     CREATE TABLE IF NOT EXISTS sessions (
-                        category VARCHAR,
-                        date TIMESTAMP,
-                        driver_number INT,
-                        flag VARCHAR,
-                        lap_number INT,
+                        circuit_key INT,
+                        circuit_short_name VARCHAR,
+                        country_code VARCHAR,
+                        country_key INT,
+                        country_name VARCHAR,
+                        date_end TIMESTAMP,
+                        date_start TIMESTAMP,
+                        gmt_offset TIME,
+                        location VARCHAR,
                         meeting_key INT,
-                        message VARCHAR,
-                        scope VARCHAR,
-                        sector INT,
-                        session_key INT
+                        session_key INT,
+                        session_name VARCHAR,
+                        session_type VARCHAR,
+                        year INT
                     )
                     """)
 
@@ -106,7 +110,7 @@ def bronze_sessions(context: dg.AssetExecutionContext, duckdb: DuckDBResource) -
                     SET s3_use_ssl='false';
                     """)
         
-        cnn.execute('CREATE OR REPLACE TEMP VIEW sessions_stg AS SELECT * FROM sessions WHERE 1=2')
+        cnn.execute('CREATE OR REPLACE TEMP TABLE sessions_stg AS SELECT * FROM sessions WHERE 1=2')
 
         try:
             cnn.execute(
