@@ -91,7 +91,7 @@ def bronze_sessions(context: dg.AssetExecutionContext, duckdb: DuckDBResource) -
                         lap_number INT,
                         meeting_key INT,
                         message VARCHAR,
-                        scope : VARCHAR,
+                        scope VARCHAR,
                         sector INT,
                         session_key INT
                     )
